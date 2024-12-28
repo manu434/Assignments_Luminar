@@ -88,6 +88,9 @@ insert into feetable values(4,3410,'HR',12000)
 Select * from feetable
 
 select studentstable.firstname,studentstable.lastname,feetable.course from studentstable inner join feetable on studentstable.admission=feetable.admission
+select studentstable.firstname,studentstable.lastname,feetable.course from studentstable left join feetable on studentstable.admission=feetable.admission
+select studentstable.firstname,studentstable.lastname,feetable.course from studentstable right join feetable on studentstable.admission=feetable.admission
+select studentstable.firstname,studentstable.lastname,feetable.course from studentstable full join feetable on studentstable.admission=feetable.admission
 
 
 
