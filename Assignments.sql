@@ -296,4 +296,89 @@ select * from manu200
 sp_help manu200
 alter table manu200 drop constraint defaultcons
 
+----Assignment-5----
+drop table if exists employee
+create table employee(empid int primary key,empname varchar(20) not null,department varchar(60) not null,contact bigint unique,emailid varchar(100))
+drop table if exists empsalary
+create table empsalary(empid int foreign key references employee(empid),salary int not null,permanent varchar(3))
+
+insert into employee values(101,'manu','bca',8787878789,'manukshibu@gmail.com')
+insert into employee values(102,'anu','bcom',3387878789,'makshibu@gmail.com')
+insert into employee values(103,'rakhi','mba',8787899789,'mashibu@gmail.com')
+insert into employee values(104,'hi','mba',8789789,'mashibu@yahoo.com')
+insert into employee values(105,'rakhi','bba',87879789,'mashibu@ori.com')
+insert into employee values(106,'kkhi','HR',878797809,'masu@ori.com')
+insert into employee values(107,'gkhi','Developemnt',687879789,'shibu@ori.com')
+insert into employee values(109,'gkhi','Deopemnt',6890979789,'shiu@ori.com')
+insert into employee values(110,'gkha','Deemnt',3290979789,'shiu@ori.com')
+insert into employee values(112,'gkhaa','HR',1290979789,'shiu@gmail.com')
+
+
+select * from employee
+
+insert into empsalary values(101,60000,'yes')
+insert into empsalary values(102,40000,'yes')
+insert into empsalary values(103,50000,'yes')
+insert into empsalary values(103,50000,'no')
+
+
+select * from empsalary
+
+----1----
+select COUNT(*) from empsalary where permanent='yes' and salary>50000
+
+---2---
+select * from employee where emailid like '%gmail.com%'
+
+---3---
+SELECT * 
+FROM employee
+WHERE department = 'hr' OR department = 'Development';
+
+---4---
+select max(salary) from empsalary where permanent='yes'
+
+---5--
+select * from employee where empname like '%a'
+
+---Assignment_6----
+drop table if exists rooms
+create table rooms(roomid int primary key,available bit default 1,roomtype varchar(50) check (roomtype in('double','single','delux')),dailyrent int default 1000)
+---insert values--
+insert into rooms values(100,default,'DOUBLE',default)
+insert into rooms values(101,default,'single',default)
+insert into rooms values(102,default,'delux',default)
+insert into rooms values(103,default,'single',default)
+insert into rooms values(104,default,'DOUBLE',default)
+select * from rooms
+sp_help rooms
+
+
+drop table if exists bookingdetails
+create table bookingdetails(bookingid int primary key,roomid int foreign key references rooms(roomid),customername varchar(50) not null,fromdate datetime default getdate(),todate datetime not null,phoneno bigint unique CHECK(LEN(CAST(phoneno AS VARCHAR)) = 10))
+
+----insert values----
+insert into bookingdetails values(1005,100,'manu',default,'12/12/2024',6467676767)
+insert into bookingdetails values(1001,101,'manu',default,'12/12/2024',6767645767)
+insert into bookingdetails values(1002,102,'manu',default,'12/12/2024',6767666767)
+insert into bookingdetails values(1003,103,'manu',default,'12/12/2024',6767688767)
+insert into bookingdetails values(1004,104,'manu',default,'12/12/2024',6769976767)
+
+select * from bookingdetails
+sp_help bookingdetails
+
+---without giving primary key----
+insert into bookingdetails (bookingid,customername,fromdate,todate,phoneno) values(1200,'manu',default,'03/13/1997',7878784536)
+
+select * from bookingdetails
+
+
+
+
+
+
+
+
+
+
 
