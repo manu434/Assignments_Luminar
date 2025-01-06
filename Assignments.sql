@@ -373,6 +373,99 @@ insert into bookingdetails (bookingid,customername,fromdate,todate,phoneno) valu
 select * from bookingdetails
 
 
+----Assignment_7
+drop table if exists petrol
+create table petrol(distributorid int,distributorname varchar(20),buyrate bigint,sellrate bigint,volumein float,volumeout float,year date)
+insert into petrol values(10,'jio',1000,900,10.2,10.3,'03/05/2022')
+insert into petrol values(11,'jio',2000,500,10.2,10.3,'03/05/2022')
+insert into petrol values(12,'bharat',3000,800,10.2,10.3,'03/05/2022')
+insert into petrol values(13,'hp',1000,900,10.2,10.3,'03/05/2022')
+insert into petrol values(14,'bharat',3000,200,10.2,60.3,'03/05/2022')
+insert into petrol values(15,'hp',1000,900,10.2,10.3,'03/05/2022')
+insert into petrol values(16,'indianoil',10000,9000,129.8,100.9,'03/05/2022')
+
+select * from petrol
+
+--1
+SELECT distributorName AS Distributors
+FROM petrol;
+
+--2
+select upper(distributorName) AS UPERCASE from petrol 
+
+---3
+SELECT LEFT (distributorName,3) AS FirstThreeCharacters from petrol
+
+--4
+select * from petrol  order by distributorname asc
+
+--5
+SELECT * from petrol where distributorname in ('jio','bharat')
+
+--6--
+select * from petrol where distributorname like '%h%'
+
+--7
+select sum(volumein) as totalsold from petrol
+
+SELECT distributorname, SUM(volumein) AS TotalAmountSold FROM Petrol GROUP BY distributorName
+
+select * from petrol
+
+--8
+SELECT * FROM petrol  WHERE year(year) BETWEEN 2020 AND 2022
+
+insert into petrol values(15,'bharat',3000,200,10.2,60.3,'03/05/2020')
+insert into petrol values(16,'hp',1000,900,10.2,10.3,'03/05/2021')
+insert into petrol values(17,'indianoil',10000,9000,129.8,100.9,'03/05/2023')
+
+--9
+SELECT distributorname, COUNT(*) AS DistributorCount FROM Petrol GROUP BY distributorname
+
+
+--Assignment-8--
+
+drop table if exists students
+create table students(stid int,fname varchar(20),lname varchar(20),gpa float,enrolment_date datetime,major varchar(20))
+insert into students values(201,'shivansh','mahajan',8.79,'2021-09-01 09:30:00','computer science')
+insert into students values(202,'umesh','sharma',8.44,'2021-09-01 08:30:00','mathematics')
+insert into students values(203,'rakesh','kumar',5.60,'2021-09-01 10:00:00','biology')
+insert into students values(204,'radha','sharma',9.20,'2021-09-01 12:45:00','chemistry')
+insert into students values(205,'kush','kumar',7.85,'2021-09-01 08:30:00','physics')
+insert into students values(206,'prem','chopra',9.56,'2021-09-01 09:24:00','history')
+insert into students values(207,'pankaj','vats',9.78,'2021-09-01 02:30:00','english')
+insert into students values(208,'navleen','kaur',7.00,'2021-09-01 06:30:00','mathematics')
+
+select * from students
+
+--1
+select upper(fname) as STUDENT_NAME from students
+
+--2
+SELECT LEFT (fname, 3) AS FirstThreeCharacters from students
+
+--3
+select REPLACE(fname,'a','A') AS Modifiedname from students
+
+--4
+select * from students where fname in ('prem','shivansh')
+
+--5
+select * from students where fname like '%a' and len(fname)=6 --end with a
+select * from students where fname like 'a%' and len(fname)=6 ---start with a
+select * from students where fname like '%a%' and len(fname)=6 ---contains a
+
+insert into students values(209,'manukaa','kaur',8.00,'2021-09-01 06:30:00','mathematics')
+insert into students values(210,'aakkaa','kaur',8.00,'2021-09-01 06:30:00','mathematics')
+
+--6
+select * from students where gpa between 9.00 and 9.99
+
+--7
+select count(*) as COUNT_OF_COMPUTERSCIENCE from students  where major='computer science'
+
+
+
 
 
 
